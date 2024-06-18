@@ -1,0 +1,14 @@
+
+func void testeChamadaReturn() {
+    boolean var1, var2, var3;
+    teste2 = foo();
+    teste3 = foo(var1);
+    teste4 = foo(var1, var2, var3);
+    teste5 = foo();
+    
+    while ( n ) {
+     
+        res = res + 1;
+    }
+    return 121121;
+}

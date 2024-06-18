@@ -1,0 +1,23 @@
+double x, y;
+int i,j,k;
+boolean value;
+
+
+func void testeRelacionalELogico() {
+    double x, y;
+    int i,j,k;
+    boolean value;
+    
+    var1 = 123;
+    var2 = 321;
+    teste = var1 > var2;
+    teste = var1 < var2;
+    teste = var1 >= var2;
+    teste = var1 <= var2;
+    res = i / (i-j);
+    teste = !var2;
+    teste = var1 == var2;
+    teste = var1 != var2;
+    teste = var1 || var2;
+    teste = var1 && var2;
+}

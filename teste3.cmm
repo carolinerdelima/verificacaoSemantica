@@ -1,0 +1,19 @@
+
+func void testeArray() {
+
+    double array[21031];
+
+    boolean array[23];
+    double vetor;
+    int lista[10];
+
+    if ( ( ( ( x) ) ) ) {
+        y = x / 3;
+        z = y * 4;
+    }
+    
+    array = [12, 11, 10, 9];
+    array = [vetor, var2, var5, varTeste];
+    lista = vetor;
+    matriz = array * lista;
+}
