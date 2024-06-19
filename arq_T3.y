@@ -2,6 +2,14 @@
         import java.io.*; 
 %}
 
+%union {
+    int ival;
+    String sval;
+    List<String> slist;
+    List<Param> plist;
+    Param param;
+}
+
 %token NL
 %token <sval> IDENT ARRAY
 %token <ival> NUM
@@ -27,8 +35,19 @@ ListaDecl: DeclVar ListaDecl
         ;
 
 DeclVar: Tipo ListaIdent ';'
-        | Tipo ListaArray ';'
-        ;
+    | Tipo ListaArray ';'
+
+DeclFun: FUNC TipoOuVoid IDENT '(' FormalPar ')' '{' LDeclVar ListaCmd Retorno '}' {
+    List<String> paramTypes = new ArrayList<>();
+    for (Param p : $5) {
+        paramTypes.add(p.type);
+    }
+    addFunction($3, $2, paramTypes);
+    currentLocalTable = null;
+    currentFunction = null;
+}
+;
+
 LDeclVar: LDeclVar DeclVar
         |  /* vazio */ 
         ;
@@ -61,12 +80,24 @@ TipoOuVoid: Tipo
         | VOID 
         ;
 
-FormalPar: ParamList 
-        | /* vazio */
-        ;
+FormalPar: ParamList {
+    $$ = $1;
+}
+| /* vazio */ {
+    $$ = new ArrayList<>();
+}
+;
 
-ParamList: restoParamList Tipo IDENT
-        ;
+ParamList: ParamList ',' Tipo IDENT {
+    $1.add(new Param($3, $4));
+    $$ = $1;
+}
+| Tipo IDENT {
+    List<Param> params = new ArrayList<>();
+    params.add(new Param($1, $2));
+    $$ = params;
+}
+;
 
 restoParamList: restoParamList Tipo IDENT ','
         | /* vazio */
